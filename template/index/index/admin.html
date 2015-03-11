@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>管理博客</title>
+    </head>
+    <body>
+        <form action="addBlog" method="post">
+            <input type="text" name="title" style="width:100%;"><br>
+            <textArea id="editor" name="content" style="width:100%;height:300px;"></textArea>
+            <input type="submit">
+        </form>
+        <script src="/static/ueditor/ueditor.config.js"></script>
+        <script src="/static/ueditor/ueditor.all.min.js"></script>
+        <script>
+            var ue = UE.getEditor('editor');
+        </script>
+    </body>
+</html>
