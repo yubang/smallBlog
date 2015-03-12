@@ -163,7 +163,7 @@ class Request(object):
             for temp in temps:
                 t=temp.split("=")
                 if(len(t)==2):
-                    self.POST[t[0]]=t[1].decode("UTF-8")
+                    self.POST[t[0]]=urllib.unquote(t[1]).decode("UTF-8")
             
         
     def setSession(self,key,value,timeout=3600):
@@ -229,7 +229,6 @@ class MyStreamRequestHandlerr(StreamRequestHandler):
                 if(data==None or data == ''):
                     if(self.__dict['method']=="POST"):
                         self.__dict['postArgv']=self.rfile.read(int(self.__dict['Content-Length']))
-                        self.__dict['postArgv']=urllib.unquote(self.__dict['postArgv'].encode("UTF-8"))
                         break
                     else:
                         break
@@ -325,13 +324,12 @@ def application(environ,start_response):
     try:
         length=int(environ.get('CONTENT_LENGTH',0))
         body= parse_qs(environ['wsgi.input'].read(length))
-        print body
         dict['postArgv']=""
         index=0
         for temp in body:
             if(index!=0):
                 dict['postArgv']=dict['postArgv']+"&"
-            dict['postArgv']=dict['postArgv']+temp+"="+body[temp][0]
+            dict['postArgv']=dict['postArgv']+temp+"="+urllib.quote(body[temp][0])
             index=index+1
         print dict['postArgv']
     except:
@@ -385,7 +383,7 @@ def useWsgi(environ,start_response,method,cacheObj=None):
     
 if __name__ == "__main__":
     #ThreadingTCPServer
-    init(testMethod)
+    #init(testMethod)
     
     #wsgi
-    #wsgiInit(testMethod)
+    wsgiInit(testMethod)

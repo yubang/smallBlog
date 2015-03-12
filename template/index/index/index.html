@@ -5,18 +5,24 @@
         <title>yubang的博客</title>
     </head>
     <body>
-        <h1 align="center">yubang的博客</h1>
+        <h1 align="center">
+            yubang的博客
+            <small><small><small><small>
+                <a href="about">关于我</a>
+           </small>  </small> </small>
+            </small>
+        </h1>
         <hr>
         {% for temp in lists %}
-        <div style="width:100%;text-align:center;">
-            <h5>{{ temp.title }}</h5>
-            <hr>
-            <div>{{ temp.content }}</div>
+        <div style="width:90%;border:1px solid skyblue;margin-top:30px;margin-left:5%;">
+            <h2 align="center">{{ temp.title }}</h2>
+            <hr style="border:1px solid #FF99FF;">
+            <div  style="text-align:center;">{{ temp.content }}</div>
         </div>
         {% endfor %}
         <hr>
         <p align="center">
-            <small>基于webFrame框架编写</small>
+            <small><a href="https://github.com/yubang/webFrame" target="_blank">基于webFrame框架编写</a></small>
         </p>
     </body>
 </html>

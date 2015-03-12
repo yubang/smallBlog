@@ -29,6 +29,9 @@ class Index(Action):
     
     def addBlog(self):
         "添加博客"
+        print "\n\n"
+        print self._obj['request'].POST
+        print "\n\n"
         dao=self._db.M("blog_content")
         result=dao.add({
             'title':self._obj['request'].POST.get('title',None),
@@ -39,5 +42,9 @@ class Index(Action):
         else:
             sign=u"添加成功！"
         self._assign('sign',sign)
+        self._display()
+        return self
+        
+    def about(self):
         self._display()
         return self

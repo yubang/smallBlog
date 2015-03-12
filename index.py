@@ -24,6 +24,10 @@ def index(request,response):
     response.setStatus(result.STATUS)
     for temp in result.META:
         response.META[temp]=result.META[temp]
+
+def application(env, start_response):
+    global cache
+    webFrame.useWsgi(env,start_response,index,cache)
     
 if __name__ == "__main__":
     webFrame.debug=False
