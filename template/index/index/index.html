@@ -10,11 +10,16 @@
                 background:-webkit-linear-gradient(to right, #eee, #aaa);
                 background:linear-gradient(to right,#eee,#aaa);
                 width:70%;height:100%;float:right;top:0;
+            }
+            .tab{background-color:#3D4F5D;width:30%;top:0;left:0;float:left;height:100%;position: fixed;}
+            .tab .content{color:white;width:100%;text-align:center;margin-top:20%;}
+            .contentDiv{width:90%;border:1px solid skyblue;margin-top:30px;margin-left:5%;word-wrap:break-word;}
+            .contentDiv .hr1{margin-left:5%;width:90%;}
         </style>
     </head>
     <body>
-        <div style="background-color:#3D4F5D;width:30%;top:0;left:0;float:left;height:100%;position: fixed;">
-            <div  style="color:white;width:100%;text-align:center;margin-top:20%;">
+        <div class="tab">
+            <div class="content">
                 <h2>一个专注于分享运维和后台开发心得的博客</h2>
                 <p>
                     <a href="about">关于我</a>
@@ -31,7 +36,7 @@
                 <p><a href="https://github.com/yubang/webFrame" target="_blank">python web框架</a></p>
                 <p><a href="https://github.com/yubang/lightWeightORM" target="_blank">python orm框架</a></p>
                 <p><a href="https://github.com/yubang/mysqlBackupTools" target="_blank">mysql自动备份脚本</a></p>
-                <hr>
+                <hr class="hr1">
                 <p align="center">
                     <small><a href="https://github.com/yubang/webFrame" target="_blank">本博客基于webFrame框架编写</a></small>
                 </p>
@@ -43,11 +48,11 @@
             <h1 align="center">
                 yubang的博客
             </h1>
-            <hr style="margin-left:5%;width:90%;">
+            <hr>
         
             
             {% for temp in lists %}
-                <div style="width:90%;border:1px solid skyblue;margin-top:30px;margin-left:5%;">
+                <div class="contentDiv">
                     <h2 align="center">{{ temp.title }}</h2>
                     <hr style="border:1px solid #FF99FF;">
                     <div  style="text-align:center;">{{ temp.content }}</div>
