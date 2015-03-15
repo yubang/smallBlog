@@ -13,8 +13,7 @@
             }
             .tab{background-color:#3D4F5D;width:30%;top:0;left:0;float:left;height:100%;position: fixed;}
             .tab .content{color:white;width:100%;text-align:center;margin-top:20%;}
-            .contentDiv{width:90%;border:1px solid skyblue;margin-top:30px;margin-left:5%;word-wrap:break-word;}
-            .contentDiv .hr1{margin-left:5%;width:90%;}
+            .contentDiv{width:90%;margin-top:30px;margin-left:5%;word-wrap:break-word;}
         </style>
     </head>
     <body>
@@ -53,15 +52,22 @@
             
             {% for temp in lists %}
                 <div class="contentDiv">
-                    <h2 align="center">{{ temp.title }}</h2>
-                    <hr style="border:1px solid #FF99FF;">
-                    <div  style="text-align:center;">{{ temp.content }}</div>
+                    <div class="panel panel panel-info">
+                        <div class="panel-heading ">{{ temp.title }}</div>
+                        <div class="panel-body">
+                            {{ temp.content }}
+                        </div>
+                    </div>
                 </div>
+                
             {% endfor %}
             <br>
         &nbsp;
         </div>
         
-        
+        <link rel="stylesheet" href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.min.css">
+        <script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script src="http://apps.bdimg.com/libs/bootstrap/3.3.0/js/bootstrap.min.js"></script>
     </body>
 </html>
