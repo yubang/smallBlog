@@ -3,26 +3,60 @@
     <head>
         <meta charset="UTF-8">
         <title>yubang的博客</title>
+        <style>
+            a{color:white;text-decoration:none;}
+            body{padding:0;margin:0;}
+            .lists{
+                background:-webkit-linear-gradient(to right, #eee, #aaa);
+                background:linear-gradient(to right,#eee,#aaa);
+                width:70%;height:100%;float:right;top:0;
+        </style>
     </head>
     <body>
-        <h1 align="center">
-            yubang的博客
-            <small><small><small><small>
-                <a href="about">关于我</a>
-           </small>  </small> </small>
-            </small>
-        </h1>
-        <hr>
-        {% for temp in lists %}
-        <div style="width:90%;border:1px solid skyblue;margin-top:30px;margin-left:5%;">
-            <h2 align="center">{{ temp.title }}</h2>
-            <hr style="border:1px solid #FF99FF;">
-            <div  style="text-align:center;">{{ temp.content }}</div>
+        <div style="background-color:#3D4F5D;width:30%;top:0;left:0;float:left;height:100%;position: fixed;">
+            <div  style="color:white;width:100%;text-align:center;margin-top:20%;">
+                <h2>一个专注于分享运维和后台开发心得的博客</h2>
+                <p>
+                    <a href="about">关于我</a>
+                </p>
+                <hr>
+                <h3>博客动态：</h3>
+                <ul>
+                    <li><p align="left">博客初步迁移到ace</p></li>
+                    <li><p align="left">webFrame框架初步实现</p></li>
+                </ul>
+                <hr>
+                <h3>我的开源代码：</h3>
+                <p><a href="https://github.com/yubang/AutoDeployment" target="_blank">自动化部署小工具</a></p>
+                <p><a href="https://github.com/yubang/webFrame" target="_blank">python web框架</a></p>
+                <p><a href="https://github.com/yubang/lightWeightORM" target="_blank">python orm框架</a></p>
+                <p><a href="https://github.com/yubang/mysqlBackupTools" target="_blank">mysql自动备份脚本</a></p>
+                <hr>
+                <p align="center">
+                    <small><a href="https://github.com/yubang/webFrame" target="_blank">本博客基于webFrame框架编写</a></small>
+                </p>
+            </div>
         </div>
-        {% endfor %}
-        <hr>
-        <p align="center">
-            <small><a href="https://github.com/yubang/webFrame" target="_blank">基于webFrame框架编写</a></small>
-        </p>
+        
+            <div class="lists">
+            
+            <h1 align="center">
+                yubang的博客
+            </h1>
+            <hr style="margin-left:5%;width:90%;">
+        
+            
+            {% for temp in lists %}
+                <div style="width:90%;border:1px solid skyblue;margin-top:30px;margin-left:5%;">
+                    <h2 align="center">{{ temp.title }}</h2>
+                    <hr style="border:1px solid #FF99FF;">
+                    <div  style="text-align:center;">{{ temp.content }}</div>
+                </div>
+            {% endfor %}
+            <br>
+        &nbsp;
+        </div>
+        
+        
     </body>
 </html>
