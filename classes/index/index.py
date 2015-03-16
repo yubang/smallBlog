@@ -4,11 +4,35 @@ from urlHander import Action
 
 class Index(Action):
     def index(self):
+        "主页"
+        page=self._obj['request'].GET.get("page","1")
+        page=int(page)
+        if(page<=0):
+            page=1
+            
         dao=self._db.M("blog_content")
-        lists=dao.where().order_by("-id").select()
+        lists=dao.where().order_by("-id").limit((page-1)*5,5).select()
+        count=dao.count()
         self._assign("lists",lists)
+        
+        if(page==1):
+            self._assign("lastSign",False)
+        else:
+            self._assign("lastSign",True)
+        
+        if((page+1)*5>count):
+            self._assign("nextSign",False)
+        else:
+            self._assign("nextSign",True)
+            
+        self._assign("last","?page="+str(page-1))
+        self._assign("next","?page="+str(page+1))
+        self._assign("count",count)
+        self._assign("page",page)
+        
         self._display()
         return self
+        
     def admin(self):
         if(self._obj['request'].SESSIONS.get('admin',None)==None):
             self._redirect("/account")

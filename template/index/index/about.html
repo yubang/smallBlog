@@ -3,11 +3,29 @@
     <head>
         <meta charset="UTF-8">
         <title>关于我</title>
+        {% include 'public_css.html' %}
     </head>
     <body>
-        <ul>
-            <li>博客采用自己开发的框架（<a href="https://github.com/yubang/webFrame">源码</a>），界面正在慢慢搭建中~</li>
-            <li>在这里，分享日常遇到的各种问题，和心得！</li>
-        </ul>
+        
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                关于
+            </div>
+            <div class="panel-body">
+                博客采用自己开发的框架（<a href="https://github.com/yubang/webFrame">源码</a>），界面正在慢慢搭建中~
+            </div>
+        </div>
+
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                分享
+            </div>
+            <div class="panel-body">
+                在这里，分享日常遇到的各种问题，和心得！
+            </div>
+        </div>
+        
+        {% include 'public_js.html' %}
+        
     </body>
 </html>

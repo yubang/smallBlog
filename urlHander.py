@@ -45,6 +45,7 @@ class Action():
         self.__templatePath=request['templatePath']
         self.__debug=request['debug']
         self.__actionPath=request['actionPath']
+        self.__env=request['env']
         self.__data={}
         self._obj=data#封装传入的参数
         self._db=data.get("db",None)
@@ -52,18 +53,9 @@ class Action():
         self.STATUS=['200','ok']
         if(self.__debug):
             print "load class Action"
-    def __getContentFromFile(self,actionPath=None):
-        "从文件读取内容"
-        if(actionPath==None):
-            actionPath=self.__actionPath
-        fp=open(self.__templatePath+actionPath,'r')
-        text=fp.read()
-        fp.close()
-        return text
-    def __render(self,data):
+    def __render(self,path):
         "渲染模板"
-        from jinja2 import Template
-        template = Template(data.decode("UTF-8"))
+        template=self.__env.get_template(path)
         data=template.render(self.__data)
         return data
     def _write(self,data):
@@ -75,8 +67,9 @@ class Action():
         self.__data[key]=value
     def _display(self,path=None):
         "读入文件与渲染模板"
-        text=self.__getContentFromFile(path)
-        self.DATA=self.__render(text)
+        if(path==None):
+            path=self.__actionPath
+        self.DATA=self.__render(path)
     def _redirect(self,path):
         self.META['Location']=path
         self.STATUS=['302','redirect']
@@ -125,6 +118,11 @@ class UrlHander():
             'png':'image/png',
         }
         
+        from jinja2 import Environment, FileSystemLoader
+        self.__env = Environment(
+            loader = FileSystemLoader(self.__templatePath), 
+            auto_reload = True, #自动重载，调试用
+        )
                     
     def __getObjFromModule(self,module,className):
         "从模块获取类"
@@ -296,7 +294,7 @@ class UrlHander():
             templatePath=self.__templatePath
             debug=self.__debug
             actionPath=key+"/"+methodName+".html"
-            request={'templatePath':self.__templatePath,"debug":debug,'actionPath':actionPath}
+            request={'templatePath':self.__templatePath,"debug":debug,'actionPath':actionPath,'env':self.__env}
             try:
                 dao=obj(request,data)
                 method=getattr(dao,methodName)

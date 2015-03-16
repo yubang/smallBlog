@@ -15,6 +15,7 @@
             .tab .content{color:white;width:100%;text-align:center;margin-top:20%;}
             .contentDiv{width:90%;margin-top:30px;margin-left:5%;word-wrap:break-word;}
         </style>
+        {% include 'public_css.html' %}
     </head>
     <body>
         <div class="tab">
@@ -48,6 +49,7 @@
             <h1 align="center">
                 yubang的博客
             </h1>
+            
             <hr>
         
             
@@ -62,13 +64,39 @@
                 </div>
                 
             {% endfor %}
-            <br>
-        &nbsp;
+            <div class="contentDiv">
+            <nav>
+                <ul class="pager">
+                    {% if lastSign %}
+                    <li class="previous">
+                    <a href="{{ last }}">
+                    {% else %}
+                    <li class="previous disabled">
+                    <a href="javascript:void();">
+                    {% endif %}
+                            <span aria-hidden="true">&larr;
+                            </span>上一页
+                        </a>
+                    </li>
+                    <li>
+                        <span style="margin-top:5px;">
+                            第{{ page }}页 / 共{{ count }}篇博文
+                        </span>
+                    </li>
+                    {% if nextSign %}
+                    <li class="next">
+                    <a href="{{ next }}">下一页 
+                    {% else %}
+                    <li class="next disabled">
+                    <a href="javascript:void();">下一页 
+                    {% endif %}    
+                        <span aria-hidden="true">&rarr;</span>
+                    </a>
+                    </li>
+                </ul>
+            </nav>
+            </div>
         </div>
-        
-        <link rel="stylesheet" href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap-theme.min.css">
-        <link rel="stylesheet" href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.min.css">
-        <script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
-        <script src="http://apps.bdimg.com/libs/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+        {% include 'public_js.html' %}
     </body>
 </html>
