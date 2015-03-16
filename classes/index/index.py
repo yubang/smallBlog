@@ -41,7 +41,11 @@ class Index(Action):
         return self
     def account(self):
         if(self._obj['request'].method=="POST"):
-            if(self._obj['request'].POST.get('username',None)=="root" and self._obj['request'].POST.get('password',None)=="ewfuewhjfui3284432fhrgfd"):
+            username=self._obj['request'].POST.get('username',None)
+            password=self._obj['request'].POST.get('password',None)
+            dao=self._db.M("blog_account")
+            result=dao.where({'username':username,'password':password}).count()
+            if(result==1):
                 self._obj['request'].setSession('admin','123',3600)
                 self._redirect("/admin")
                 return self

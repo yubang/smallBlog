@@ -15,7 +15,7 @@ db=lightWeightORM.Db(dbInfo,True,cache)
 def index(request,response):
     global db
     dao=urlHander.UrlHander()
-    dao.setDebug(False)
+    #dao.setDebug(False)
     dao.setTemplatePath(os.path.dirname(os.path.realpath(__file__))+"/template")
     dao.setClassPath(os.path.dirname(os.path.realpath(__file__))+"/classes")
     dao.load()

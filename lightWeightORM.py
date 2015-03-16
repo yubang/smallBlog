@@ -494,7 +494,7 @@ class Table():
                         value=v
                 else:
                     value=self.__dealField(data[keys[index]],True)
-                    fuhao="+"
+                    fuhao="="
                 if(index!=0):
                     self.__whereText=self.__whereText+" AND "
                 else:
