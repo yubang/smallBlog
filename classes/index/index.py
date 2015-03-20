@@ -84,7 +84,10 @@ class Index(Action):
     
     def addBlog(self):
         "添加博客"
-        
+        if(self._obj['request'].SESSIONS.get('admin',None)==None):
+            self._redirect("/account")
+            return self
+            
         dao=self._db.M("blog_content")
         result=dao.add({
             'title':self._obj['request'].POST.get('title',None),
@@ -104,6 +107,10 @@ class Index(Action):
         return self
     
     def delete(self):
+        if(self._obj['request'].SESSIONS.get('admin',None)==None):
+            self._redirect("/account")
+            return self
+            
         id=self._obj['request'].GET.get("id",0)
         page=self._obj['request'].GET.get("page",1)
         dao=self._db.M("blog_content")
@@ -113,6 +120,10 @@ class Index(Action):
     
     def editBlog(self):
         "编辑博文"
+        if(self._obj['request'].SESSIONS.get('admin',None)==None):
+            self._redirect("/account")
+            return self
+            
         if(self._obj['request'].method=="GET"):
             id=self._obj['request'].GET.get("id",0)
             page=self._obj['request'].GET.get("page",1)
@@ -134,6 +145,10 @@ class Index(Action):
             return self
             
     def exit(self):
+        if(self._obj['request'].SESSIONS.get('admin',None)==None):
+            self._redirect("/account")
+            return self
+            
         self._obj['request'].setSession('admin',None,1)
         self._redirect("/")
         return self
