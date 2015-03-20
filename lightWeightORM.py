@@ -316,7 +316,7 @@ class Table():
         for key in keys:
             self.__columns.append(key)
             if(index!=0):
-                text=text+" AND "
+                text=text+" , "
             text=text+self.__dealField(key,False)+"="+self.__dealField(data[key],True)
             index=index+1
         self.__sql="UPDATE %s SET %s "%(self.__tableName,text)
