@@ -398,20 +398,19 @@ class Table():
                 results=cur.fetchone()
                 result=results[0]
             
+            #把游标置为None，防止重复使用
+            self.__cursor=None
             
             if(commitSign and not self.__rollbackSign):
                 self.__log.log(u'事务提交',0)
                 self.__con.commit()
                 self.__con.close()
             elif(not self.__rollbackSign):
-                self.__cursor=None
                 self.__con.close()
                 
         except Exception,e:
             self.__errorMessage=str(e)
             result=None
-            raise
-            return []
             
         return result
     def __changeColumnsToStr(self):
