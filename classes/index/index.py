@@ -20,7 +20,7 @@ class Index(Action):
         else:
             self._assign("lastSign",True)
         
-        if((page+1)*5>count):
+        if((page)*5>count):
             self._assign("nextSign",False)
         else:
             self._assign("nextSign",True)
@@ -53,7 +53,7 @@ class Index(Action):
         else:
             self._assign("lastSign",True)
         
-        if((page+1)*5>count):
+        if((page)*5>count):
             self._assign("nextSign",False)
         else:
             self._assign("nextSign",True)
@@ -151,4 +151,12 @@ class Index(Action):
             
         self._obj['request'].setSession('admin',None,1)
         self._redirect("/")
+        return self
+        
+    def blog(self):
+        id=self._obj['request'].GET.get('id',0)
+        dao=self._db.M("blog_content")
+        objs=dao.where({'id':id}).select()
+        self._assign("obj",objs[0])
+        self._display()
         return self

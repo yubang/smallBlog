@@ -55,7 +55,7 @@
         
             
             {% for temp in lists %}
-                <div class="contentDiv">
+                <div class="contentDiv" onclick="location.href='blog?id={{ temp.id }}'">
                     <div class="panel panel panel-info">
                         <div class="panel-heading ">{{ temp.title }}</div>
                         <div class="panel-body">
