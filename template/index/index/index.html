@@ -14,6 +14,7 @@
             .tab{background-color:#3D4F5D;width:30%;top:0;left:0;float:left;height:100%;position: fixed;}
             .tab .content{color:white;width:100%;text-align:center;margin-top:20%;}
             .contentDiv{width:90%;margin-top:30px;margin-left:5%;word-wrap:break-word;}
+            .contentArea{background:url(/static/2.png) repeat;}
         </style>
         {% include 'public_css.html' %}
     </head>
@@ -58,7 +59,7 @@
                 <div class="contentDiv" onclick="location.href='blog?id={{ temp.id }}'">
                     <div class="panel panel panel-info">
                         <div class="panel-heading ">{{ temp.title }}</div>
-                        <div class="panel-body">
+                        <div class="panel-body contentArea">
                             {{ temp.content }}
                         </div>
                     </div>
